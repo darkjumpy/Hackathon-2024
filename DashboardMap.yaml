@@ -1,0 +1,132 @@
+# Visualisation of the sensor on the map
+
+type: custom:plotly-graph
+title: LD2450
+refresh_interval: 0.1
+hours_to_show: current_day
+ha_theme: true
+layout:
+  legend:
+    'y': 1
+    orientation: h
+  autosize: true
+  margin:
+    autoexpand: true
+    l: 25
+    r: 25
+    t: 25
+    b: 25
+  showlegend: true
+  xaxis:
+    dtick: 100
+    gridcolor: RGBA(200,200,200,0.15)
+    zerolinecolor: RGBA(200,200,200,0.15)
+    type: number
+    fixedrange: true
+    range:
+      - 1
+      - -1
+  yaxis:
+    dtick: 100
+    gridcolor: RGBA(200,200,200,0.15)
+    zerolinecolor: RGBA(200,200,200,0.15)
+    scaleanchor: x
+    scaleratio: 1
+    fixedrange: true
+    range:
+      - 0
+      - 3
+entities:
+  - entity: ''
+    name: Person1
+    show_value: true
+    unit_of_measurement: cm
+    marker:
+      size: 12
+    line:
+      shape: spline
+      width: 5
+    x:
+      - $ex hass.states["sensor.esphome_web_d45434_t1_x_position"].state
+    'y':
+      - $ex hass.states["sensor.esphome_web_d45434_t1_y_position"].state
+  - entity: ''
+    name: Person2
+    show_value: true
+    unit_of_measurement: cm
+    marker:
+      size: 12
+    line:
+      shape: spline
+      width: 5
+    x:
+      - $ex hass.states["sensor.esphome_web_d45434_target_2_x_position"].state
+    'y':
+      - $ex hass.states["sensor.esphome_web_d45434_target_2_y_position"].state
+  - entity: ''
+    name: Person3
+    show_value: true
+    unit_of_measurement: cm
+    marker:
+      size: 12
+    line:
+      shape: spline
+      width: 5
+    x:
+      - $ex hass.states["sensor.esphome_web_d45434_target_3_x_position"].state
+    'y':
+      - $ex hass.states["sensor.esphome_web_d45434_target_3_y_position"].state
+  - entity: ''
+    name: Zone1
+    mode: lines
+    fill: toself
+    fillcolor: RGBA(20,200,0,0.1)
+    line:
+      color: RGBA(20,200,0,0.2)
+      shape: line
+      width: 1
+    x:
+      - 0
+      - 0
+      - -5
+      - -5
+    'y':
+      - 0
+      - 5
+      - 5
+      - 0
+  - entity: ''
+    name: Coverage
+    mode: lines
+    fill: tonexty
+    fillcolor: rgba(168, 216, 234, 0.08)
+    line:
+      shape: line
+      width: 1
+      dash: dot
+    x:
+      - 0
+      - $ex 3 * Math.sin((2 * Math.PI)/360 * 60)
+      - $ex 3 * Math.sin((2 * Math.PI)/360 * 60)
+      - $ex 3 * Math.sin((2 * Math.PI)/360 * 45)
+      - $ex 3 * Math.sin((2 * Math.PI)/360 * 30)
+      - 0
+      - $ex -3 * Math.sin((2 * Math.PI)/360 * 30)
+      - $ex -3 * Math.sin((2 * Math.PI)/360 * 45)
+      - $ex -3 * Math.sin((2 * Math.PI)/360 * 60)
+      - $ex -3 * Math.sin((2 * Math.PI)/360 * 60)
+      - 0
+    'y':
+      - 0
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 80))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 60))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 45))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 35))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 25))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 35))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 45))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 60))**2 )
+      - $ex Math.sqrt( 3**2 - (3 * Math.sin((2 * Math.PI)/360 * 80))**2 )
+      - 0
+raw_plotly_config: true
+
